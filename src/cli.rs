@@ -1,0 +1,33 @@
+use clap::Parser;
+
+#[derive(Parser, Debug)]
+#[command(author, version, about = "Cenový auditor kávy z Eskomat.cz", long_about = None)]
+pub struct CliArgs {
+    /// max cena za 100g v Kč (např. --max-price 150)
+    #[arg(short, long)]
+    pub max_price: Option<f64>,
+
+    /// max velikost balení v gramech (např. --max-weight 250)
+    #[arg(short = 'w', long)]
+    pub max_weight: Option<u32>,
+
+    /// filtr podle názvu pražírny (např. --roaster "Kmen")
+    #[arg(short, long)]
+    pub roaster: Option<String>,
+
+    /// vyhledat v názvu kávy nebo chuti (např. --search "Etiopie")
+    #[arg(short, long)]
+    pub search: Option<String>,
+
+    /// zobrazit jen zlevněné kávy
+    #[arg(short, long)]
+    pub on_sale: bool,
+
+    /// ignorovat cache a stáhnout čerstvá data
+    #[arg(short = 'R', long)]
+    pub refresh: bool,
+
+    /// vypsat výsledek přímo bez stránkovače less
+    #[arg(long)]
+    pub no_pager: bool,
+}
